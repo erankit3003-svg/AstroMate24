@@ -39,7 +39,7 @@ def decode_token(token: str) -> dict:
             detail="Invalid authentication credentials"
         )
 
-async def get_current_user(credentials: HTTPAuthCredentials = Depends(security)):
+async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
     token = credentials.credentials
     payload = decode_token(token)
     user_id = payload.get("sub")
