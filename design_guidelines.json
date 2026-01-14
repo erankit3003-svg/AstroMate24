@@ -1,0 +1,169 @@
+{
+  "identity": {
+    "name": "AstroMate24",
+    "tone": "Ethereal, Premium, Trustworthy, Scientific Mysticism",
+    "aesthetic": "Celestial Light Mode",
+    "principles": [
+      "Fusion: Vedic Tradition x Modern SaaS Precision",
+      "Emotion: Clarity, Hope, Enlightenment",
+      "Content: Story-driven astrology reports",
+      "Visuals: High-key lighting, gold accents, deep cosmic text"
+    ]
+  },
+  "typography": {
+    "headings": {
+      "family": "Playfair Display, serif",
+      "weights": ["400", "600", "700"],
+      "usage": "All section titles, hero text, and major claims. Use italic variants for emphasis.",
+      "letterSpacing": "tracking-tight"
+    },
+    "body": {
+      "family": "Manrope, sans-serif",
+      "weights": ["300", "400", "500", "600"],
+      "usage": "Paragraphs, UI elements, data tables, form inputs.",
+      "letterSpacing": "tracking-normal"
+    },
+    "accents": {
+      "family": "Cormorant Garamond, serif",
+      "usage": "Pull quotes, testimonials, mystical sub-captions."
+    }
+  },
+  "colors": {
+    "palette": {
+      "primary": {
+        "DEFAULT": "#B49248",
+        "hover": "#9A7B3A",
+        "foreground": "#FFFFFF",
+        "description": "Vedic Gold - Use for primary CTAs and key highlights"
+      },
+      "secondary": {
+        "DEFAULT": "#2A2B5F",
+        "hover": "#1A1B4B",
+        "foreground": "#FFFFFF",
+        "description": "Cosmic Indigo - Use for secondary buttons and deep contrast areas"
+      },
+      "background": {
+        "DEFAULT": "#FDFBF7",
+        "paper": "#FFFFFF",
+        "subtle": "#F7F4F0",
+        "description": "Pearl White / Warm Off-White - NEVER pure #FFFFFF for main background"
+      },
+      "text": {
+        "primary": "#1A1B4B",
+        "secondary": "#5D5E7C",
+        "muted": "#9495AF",
+        "description": "Deep Indigo instead of Black for softer, premium contrast"
+      },
+      "accent": {
+        "gold": "#D4AF37",
+        "rose": "#E6B8B8",
+        "sky": "#E0F2FE",
+        "lavender": "#F3E8FF"
+      },
+      "status": {
+        "success": "#10B981",
+        "error": "#EF4444",
+        "warning": "#F59E0B",
+        "info": "#3B82F6"
+      }
+    },
+    "gradients": {
+      "hero": "linear-gradient(135deg, #FDFBF7 0%, #F3E8FF 50%, #E0F2FE 100%)",
+      "card": "linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%)",
+      "gold_text": "linear-gradient(90deg, #B49248 0%, #D4AF37 50%, #B49248 100%)"
+    }
+  },
+  "visual_enhancers": {
+    "shadows": {
+      "soft": "0 4px 20px -2px rgba(42, 43, 95, 0.05)",
+      "glow": "0 0 40px -10px rgba(180, 146, 72, 0.3)",
+      "card": "0 10px 40px -10px rgba(42, 43, 95, 0.08)"
+    },
+    "borders": {
+      "subtle": "1px solid rgba(180, 146, 72, 0.15)",
+      "highlight": "1px solid rgba(180, 146, 72, 0.4)"
+    },
+    "radius": {
+      "default": "0.75rem",
+      "card": "1rem",
+      "button": "9999px"
+    },
+    "glassmorphism": {
+      "default": "backdrop-blur-xl bg-white/60 border border-white/40 shadow-sm"
+    }
+  },
+  "layout_strategies": {
+    "marketing": {
+      "grid": "Mode A: Tetris Grid",
+      "spacing": "Generous (p-12 to p-32)",
+      "alignment": "Asymmetric, Optical Alignment"
+    },
+    "dashboard": {
+      "grid": "Mode B: High Density",
+      "spacing": "Compact (p-6)",
+      "style": "Card-based, clean separation"
+    },
+    "forms": {
+      "style": "Step-by-step Wizard",
+      "container": "Centered, max-w-2xl, Glassmorphic"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-primary text-white rounded-full px-8 py-3 font-medium hover:bg-primary/90 transition-all shadow-glow hover:shadow-lg hover:-translate-y-0.5",
+      "secondary": "bg-white text-secondary border border-secondary/20 rounded-full px-8 py-3 font-medium hover:bg-secondary/5 transition-all",
+      "ghost": "text-secondary hover:text-primary hover:bg-primary/5 rounded-full px-6 py-2 transition-colors"
+    },
+    "cards": {
+      "feature": "bg-white/80 backdrop-blur-sm border border-gold/10 rounded-2xl p-8 hover:border-gold/30 transition-all duration-300 group",
+      "pricing": "relative overflow-hidden bg-white border border-gold/20 rounded-3xl p-10 shadow-card hover:shadow-xl transition-all"
+    },
+    "inputs": {
+      "default": "bg-white/50 border-secondary/10 focus:border-primary/50 focus:ring-primary/20 rounded-lg h-12 px-4 transition-all"
+    }
+  },
+  "assets": {
+    "images": {
+      "hero_bg": {
+        "url": "https://images.unsplash.com/photo-1765383694090-1897d1c6f39e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHw0fHxteXN0aWNhbCUyMGNsb3VkcyUyMGxpZ2h0JTIwc2t5JTIwZXRoZXJlYWx8ZW58MHx8fHwxNzY4Mzk2OTA2fDA&ixlib=rb-4.1.0&q=85",
+        "alt": "Ethereal sky background",
+        "usage": "Hero section background with overlay"
+      },
+      "zodiac_mood": {
+        "url": "https://images.unsplash.com/photo-1765741328034-93288bf62354?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTJ8MHwxfHNlYXJjaHwyfHxteXN0aWNhbCUyMGNsb3VkcyUyMGxpZ2h0JTIwc2t5JTIwZXRoZXJlYWx8ZW58MHx8fHwxNzY4Mzk2OTA2fDA&ixlib=rb-4.1.0&q=85",
+        "alt": "Golden light atmosphere",
+        "usage": "About section or spiritual context"
+      },
+      "meditation": {
+        "url": "https://images.unsplash.com/photo-1740513297808-1c414082ae2d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDF8MHwxfHNlYXJjaHwxfHxzcGlyaXR1YWwlMjBtZWRpdGF0aW9uJTIwbGlnaHQlMjBhZXN0aGV0aWN8ZW58MHx8fHwxNzY4Mzk2OTA5fDA&ixlib=rb-4.1.0&q=85",
+        "alt": "Minimalist spiritual object",
+        "usage": "Services or features section"
+      }
+    },
+    "icons": {
+      "library": "lucide-react",
+      "style": "Stroke width 1.5px, Gold or Indigo color"
+    }
+  },
+  "motion": {
+    "page_transition": "initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.4, ease: 'easeOut' }}",
+    "hover_lift": "whileHover={{ y: -4 }} transition={{ type: 'spring', stiffness: 300 }}",
+    "stagger": "staggerChildren: 0.1"
+  },
+  "instructions_to_main_agent": [
+    "1. THEME ENFORCEMENT: Strictly adhere to the Light/Gold/Indigo palette. Do NOT use dark mode by default.",
+    "2. TYPOGRAPHY: Use Playfair Display for ALL headings. Import it from Google Fonts immediately.",
+    "3. GLASSMORPHISM: Use the defined glassmorphism classes for the header and floating elements.",
+    "4. SHADCN CUSTOMIZATION: Override default Shadcn radius to '0.75rem' and use the custom colors defined above.",
+    "5. IMAGES: Use the provided Unsplash URLs. Do not use placeholders.",
+    "6. FORMS: The Birth Details form is the core conversion point. Make it beautiful, multi-step, and reassuring.",
+    "7. TESTING: Add data-testid to all interactive elements (buttons, inputs, links)."
+  ],
+  "universal_guidelines": [
+    "Avoid generic 'AI slop' designs. No centered text blocks without purpose.",
+    "Use 2-3x more padding than usual. White space is luxury.",
+    "Micro-interactions are mandatory for every click and hover.",
+    "Never use pure black (#000000). Use the defined Cosmic Indigo or Dark Grey.",
+    "Ensure all text meets APCA contrast standards against the light background."
+  ]
+}
