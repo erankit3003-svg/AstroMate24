@@ -1,610 +1,548 @@
-# AstroMate24 - Vedic Astrology Report Platform
+# 🌟 AstroMate24 - Vedic Astrology Platform
 
-A complete production-ready astrology website that generates personalized Vedic astrology reports with Razorpay payment integration.
+**Simple, Modern & Easy to Deploy** | Firebase + Node.js + React
 
-## 🌟 Features
-
-### User Features
-- **User Registration & Login** - JWT-based authentication
-- **Birth Details Form** - Comprehensive form with location coordinates
-- **Razorpay Payment Integration** - Secure payment processing (₹499 per report)
-- **Instant Report Generation** - Automated astrology report via DivineAPI
-- **User Dashboard** - View all purchased reports
-- **Report View** - Detailed report display with birth chart data
-
-### Admin Features
-- **Admin Panel** - Manage users, orders, and reports
-- **Analytics Dashboard** - View all transactions and user data
-- **Report Management** - Access all generated reports
-
-### Report Contents (17 Sections)
-1. Personal Introduction & Life Overview
-2. Detailed Astrological Blueprint
-3. Planetary Positions & Influences
-4. Complete Horoscope Charts
-5. House Cusps Analysis
-6. Divisional Charts (Vargas)
-7. Friendship & Relationship Compatibility
-8. KP Astrology Insights
-9. Ascendant & Rising Sign Report
-10. Bhava Kundli (House Strength)
-11. Vimshottari Dasha Timeline (15 Years)
-12. Yogini Dasha Predictions
-13. Sadhesati Analysis (Saturn Transit)
-14. Kalsarpa Dosha Detection
-15. Manglik Analysis (Mars Influence)
-16. Complete Planet Profiles
-17. Personalized Gemstone Recommendations
+Complete astrology website jo personalized Vedic astrology reports generate karta hai with Razorpay payment integration.
 
 ---
 
-## 🚀 Local Setup Guide
+## ✨ Features
+
+### 🎯 User Features
+- ✅ User Registration & Login (JWT Auth)
+- ✅ Birth Details Form (Complete Astrological Inputs)
+- ✅ Razorpay Payment Integration (₹499 per report)
+- ✅ Instant Report Generation via DivineAPI
+- ✅ User Dashboard (All Reports)
+- ✅ Detailed Report View (17 Sections)
+
+### 👨‍💼 Admin Features
+- ✅ Admin Panel (Complete Management)
+- ✅ View All Users
+- ✅ View All Orders & Payments
+- ✅ View All Generated Reports
+
+### 📊 17 Report Sections
+1. Personal Introduction
+2. Astrological Blueprint
+3. Planetary Positions
+4. Horoscope Charts
+5. House Cusps Analysis
+6. Divisional Charts (Vargas)
+7. Relationship Compatibility
+8. KP Astrology Insights
+9. Ascendant Report
+10. Bhava Kundli
+11. Vimshottari Dasha (15 Years)
+12. Yogini Dasha
+13. Sadhesati Analysis
+14. Kalsarpa Dosha
+15. Manglik Analysis
+16. Planet Profiles
+17. Gemstone Suggestions
+
+---
+
+## 🛠️ Tech Stack
+
+**Backend:**
+- Node.js + Express
+- Firebase Firestore (Database)
+- JWT Authentication
+- Razorpay Integration
+- DivineAPI Integration
+
+**Frontend:**
+- React 19
+- Tailwind CSS (Premium Light Theme)
+- React Router v7
+- Axios
+- Shadcn/UI Components
+
+---
+
+## 🚀 One-Click Setup (Super Easy!)
 
 ### Prerequisites
+Sirf ye 2 cheezein chahiye:
+1. **Node.js 18+** - [Download](https://nodejs.org/)
+2. **Firebase Account** - [Free Setup](https://firebase.google.com/)
 
-Before starting, make sure you have these installed:
+### Step 1: Firebase Setup (5 minutes)
 
-- **Python 3.11+** ([Download](https://www.python.org/downloads/))
-- **Node.js 18+** and **npm/yarn** ([Download](https://nodejs.org/))
-- **MongoDB** ([Download](https://www.mongodb.com/try/download/community))
-- **Git** ([Download](https://git-scm.com/downloads))
-
-### Step 1: Clone/Download Project
-
-```bash
-# If you have the project ZIP, extract it
-# OR if it's in a git repository:
-git clone <repository-url>
-cd astromate24
+#### 1.1 Create Firebase Project
+```
+1. Go to: https://console.firebase.google.com/
+2. Click "Add Project"
+3. Enter project name: astromate24
+4. Disable Google Analytics (optional)
+5. Click "Create Project"
 ```
 
-### Step 2: MongoDB Setup
-
-**Option A: Install MongoDB Locally**
-
-1. Download and install MongoDB Community Edition from https://www.mongodb.com/try/download/community
-2. Start MongoDB service:
-
-```bash
-# Windows
-# MongoDB starts automatically after installation
-
-# macOS (using Homebrew)
-brew services start mongodb-community
-
-# Linux
-sudo systemctl start mongod
+#### 1.2 Enable Firestore Database
+```
+1. In Firebase Console, click "Firestore Database"
+2. Click "Create Database"
+3. Select "Start in production mode"
+4. Choose location (asia-south1 for India)
+5. Click "Enable"
 ```
 
-3. Verify MongoDB is running:
-```bash
-mongosh
-# You should see MongoDB shell
+#### 1.3 Get Service Account Key
+```
+1. Go to Project Settings (⚙️ icon)
+2. Go to "Service Accounts" tab
+3. Click "Generate new private key"
+4. Download JSON file
+5. Keep it safe - we'll use it in next step
 ```
 
-**Option B: Use MongoDB Atlas (Cloud)**
+### Step 2: Run One-Click Setup
 
-1. Go to https://www.mongodb.com/cloud/atlas
-2. Create a free account and cluster
-3. Get your connection string
-4. Update in backend/.env: `MONGO_URL="mongodb+srv://username:password@cluster.mongodb.net/"`
-
-### Step 3: Backend Setup
-
+#### For Windows:
 ```bash
-# Navigate to backend directory
-cd backend
-
-# Create virtual environment (recommended)
-python -m venv venv
-
-# Activate virtual environment
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Create .env file (if not exists)
-cp .env.example .env   # OR create manually
-
-# Edit .env file with your configuration
+# Double-click setup.bat
+# Or run in CMD:
+setup.bat
 ```
 
-**Backend .env Configuration:**
+#### For Mac/Linux:
+```bash
+# Make script executable
+chmod +x setup.sh
 
-Create or edit `backend/.env`:
+# Run setup
+./setup.sh
+```
+
+### Step 3: Configure Firebase Credentials
+
+Open `backend/.env` and add your Firebase credentials from the downloaded JSON:
 
 ```env
-MONGO_URL="mongodb://localhost:27017"
-DB_NAME="astromate24_db"
-CORS_ORIGINS="http://localhost:3000"
+# Copy from your Firebase JSON file
+FIREBASE_PROJECT_ID=your-project-id
+FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYour-Private-Key-Here\n-----END PRIVATE KEY-----\n"
+FIREBASE_CLIENT_EMAIL=firebase-adminsdk-xxxxx@your-project.iam.gserviceaccount.com
 
-JWT_SECRET="your-secret-key-change-this-in-production"
+# Keep these as is for now
+PORT=8001
+CORS_ORIGINS=http://localhost:3000
+JWT_SECRET=change-this-secret-key-in-production
 
-# Get from https://dashboard.razorpay.com/
-RAZORPAY_KEY_ID="XXXXX"
-RAZORPAY_KEY_SECRET="XXXXX"
+RAZORPAY_KEY_ID=XXXXX
+RAZORPAY_KEY_SECRET=XXXXX
+DIVINE_API_KEY=XXXXX
 
-# Get from DivineAPI
-DIVINE_API_KEY="XXXXX"
-
-# Admin credentials (auto-created on first run)
-ADMIN_EMAIL="admin@astromate24.com"
-ADMIN_PASSWORD="admin123"
+ADMIN_EMAIL=admin@astromate24.com
+ADMIN_PASSWORD=admin123
 ```
 
-**Start Backend Server:**
+### Step 4: Start the Application
 
 ```bash
-# Make sure you're in backend directory and venv is activated
-uvicorn server:app --host 0.0.0.0 --port 8001 --reload
+# One command to start everything!
+npm run dev
 ```
 
-Backend should now be running at: `http://localhost:8001`
+✅ **Done!** Open http://localhost:3000 in your browser!
 
-Test it: Open browser and go to `http://localhost:8001/api/`
+---
 
-### Step 4: Frontend Setup
+## 📖 Detailed Manual Setup (if automatic fails)
 
-Open a **NEW terminal** (keep backend running):
+### Backend Setup
 
 ```bash
-# Navigate to frontend directory
+cd backend
+
+# Install dependencies
+npm install
+
+# Create .env file
+cp .env.example .env
+# Edit .env with your Firebase credentials
+
+# Start backend
+npm run dev
+```
+
+Backend will run on: http://localhost:8001
+
+### Frontend Setup
+
+```bash
 cd frontend
 
 # Install dependencies
 npm install
-# OR if you prefer yarn:
-yarn install
 
-# Create .env file (if not exists)
-```
-
-**Frontend .env Configuration:**
-
-Create or edit `frontend/.env`:
-
-```env
-REACT_APP_BACKEND_URL=http://localhost:8001
-WDS_SOCKET_PORT=3000
-ENABLE_HEALTH_CHECK=false
-```
-
-**Start Frontend Server:**
-
-```bash
-# Make sure you're in frontend directory
+# Start frontend
 npm start
-# OR
-yarn start
 ```
 
-Frontend should now be running at: `http://localhost:3000`
-
-### Step 5: Verify Setup
-
-1. **Open Browser**: Go to `http://localhost:3000`
-2. **Check Homepage**: You should see the AstroMate24 landing page
-3. **Test Registration**: Click "Get Started" and create an account
-4. **Check Admin Panel**: 
-   - Login with: `admin@astromate24.com` / `admin123`
-   - Click "Admin" button in header
+Frontend will open automatically at: http://localhost:3000
 
 ---
 
 ## 🔑 API Keys Setup
 
-### 1. Razorpay Setup (For Payment Integration)
+### 1. Razorpay Keys (For Payments)
 
-1. **Sign up**: Go to https://dashboard.razorpay.com/signup
-2. **Get Test Keys**:
-   - Go to Settings → API Keys
-   - Generate Test Keys (for development)
-   - Copy `Key ID` and `Key Secret`
-3. **Update backend/.env**:
-   ```
-   RAZORPAY_KEY_ID="rzp_test_xxxxxxxxxxxxx"
-   RAZORPAY_KEY_SECRET="xxxxxxxxxxxxxxxxxxxxx"
-   ```
-4. **Test Mode**: Use test cards provided by Razorpay
-   - Card: 4111 1111 1111 1111
-   - CVV: Any 3 digits
-   - Expiry: Any future date
+**Free Test Mode:**
+```
+1. Signup: https://dashboard.razorpay.com/signup
+2. Go to Settings → API Keys
+3. Generate Test Keys
+4. Copy Key ID & Secret to backend/.env:
+   RAZORPAY_KEY_ID=rzp_test_xxxxx
+   RAZORPAY_KEY_SECRET=your_secret
+```
 
-### 2. DivineAPI Setup (For Astrology Reports)
+**Test Payment:**
+- Card: 4111 1111 1111 1111
+- CVV: 123
+- Expiry: 12/25
 
-1. **Contact DivineAPI**: Visit https://divineapi.com/
-2. **Get API Key**: Register and get your API key
-3. **Update backend/.env**:
-   ```
-   DIVINE_API_KEY="your_divine_api_key_here"
-   ```
+### 2. DivineAPI Key (For Astrology Reports)
+
+```
+1. Visit: https://divineapi.com/
+2. Create Account
+3. Get API Key
+4. Add to backend/.env:
+   DIVINE_API_KEY=your_key_here
+```
 
 ---
 
-## 📁 Project Structure
+## 📂 Project Structure
 
 ```
 astromate24/
 │
-├── backend/                    # FastAPI Backend
-│   ├── server.py              # Main application
-│   ├── models.py              # Database models
-│   ├── auth.py                # Authentication logic
-│   ├── config.py              # Configuration
-│   ├── .env                   # Environment variables
-│   └── requirements.txt       # Python dependencies
+├── backend/                    # Node.js + Express + Firebase
+│   ├── routes/
+│   │   ├── auth.js           # Login/Register APIs
+│   │   ├── payments.js       # Razorpay Integration
+│   │   ├── reports.js        # Report Management
+│   │   └── admin.js          # Admin APIs
+│   ├── middleware/
+│   │   └── auth.js           # JWT Middleware
+│   ├── server.js             # Main Server
+│   ├── firebase.js           # Firebase Config
+│   ├── config.js             # App Config
+│   ├── .env                  # Environment Variables 🔐
+│   └── package.json
 │
-├── frontend/                   # React Frontend
-│   ├── public/                # Static files
+├── frontend/                   # React App
 │   ├── src/
-│   │   ├── pages/            # Page components
-│   │   │   ├── Home.js
-│   │   │   ├── Login.js
-│   │   │   ├── Register.js
-│   │   │   ├── BirthDetails.js
-│   │   │   ├── Dashboard.js
-│   │   │   ├── ReportView.js
-│   │   │   └── AdminPanel.js
-│   │   ├── components/       # Reusable components
-│   │   │   ├── Header.js
-│   │   │   ├── Footer.js
-│   │   │   ├── ProtectedRoute.js
-│   │   │   └── ui/           # Shadcn components
-│   │   ├── utils/            # Utility functions
-│   │   ├── config.js         # Frontend config
-│   │   ├── App.js            # Main app
-│   │   └── index.css         # Global styles
-│   ├── .env                  # Environment variables
-│   └── package.json          # Node dependencies
+│   │   ├── pages/            # All Pages
+│   │   │   ├── Home.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
+│   │   │   ├── BirthDetails.jsx
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── ReportView.jsx
+│   │   │   └── AdminPanel.jsx
+│   │   ├── components/       # Reusable Components
+│   │   │   ├── Header.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   └── ui/          # Shadcn Components
+│   │   ├── utils/
+│   │   ├── config.js
+│   │   ├── App.js
+│   │   └── index.css
+│   ├── .env
+│   └── package.json
 │
-├── design_guidelines.json     # Design system
-├── PROJECT_DOCUMENTATION.md   # Detailed docs
-└── README.md                 # This file
+├── setup.sh                   # Mac/Linux Setup Script
+├── setup.bat                  # Windows Setup Script
+├── package.json              # Root Package (Run Scripts)
+└── README.md                 # This File
 ```
 
 ---
 
 ## 🎨 Design System
 
-**Theme**: Celestial Light Mode (Premium)
+**Theme:** Celestial Light (Premium)
 
-**Colors**:
-- Primary (Vedic Gold): `#B49248`
-- Secondary (Cosmic Indigo): `#2A2B5F`
-- Background: `#FDFBF7` (Pearl White)
-- Text: `#1A1B4B` (Deep Indigo)
+**Colors:**
+- Primary (Gold): `#B49248`
+- Secondary (Indigo): `#2A2B5F`
+- Background: `#FDFBF7`
 
-**Typography**:
-- Headings: **Playfair Display** (serif)
-- Body: **Manrope** (sans-serif)
-- Accents: **Cormorant Garamond**
-
-**Features**:
-- Glassmorphism effects
-- Smooth animations
-- Mobile-first responsive design
-- Accessible (WCAG compliant)
+**Typography:**
+- Headings: Playfair Display
+- Body: Manrope
 
 ---
 
-## 📝 API Endpoints
+## 🧪 Testing
 
-### Authentication
-- `POST /api/auth/register` - Create new user account
-- `POST /api/auth/login` - Login user
-- `GET /api/auth/me` - Get current user details (requires auth)
-
-### Payments
-- `POST /api/payments/create-order` - Create Razorpay order (requires auth)
-- `POST /api/payments/verify` - Verify payment signature (requires auth)
-
-### Reports
-- `GET /api/reports/my-reports` - Get user's all reports (requires auth)
-- `GET /api/reports/{report_id}` - Get specific report (requires auth)
-
-### Admin (Admin access only)
-- `GET /api/admin/users` - List all users
-- `GET /api/admin/orders` - List all orders
-- `GET /api/admin/reports` - List all reports
-
-### Company
-- `GET /api/company` - Get company details (public)
-
----
-
-## 🔒 Default Credentials
-
-### Admin Account (Auto-created on first startup)
+### Test Admin Login
 ```
 Email: admin@astromate24.com
 Password: admin123
 ```
 
-**⚠️ Important**: Change admin password in production by updating `ADMIN_PASSWORD` in backend/.env
-
----
-
-## 🧪 Testing the Application
-
-### 1. Test User Registration
-```bash
-curl -X POST http://localhost:8001/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Test User",
-    "email": "test@example.com",
-    "mobile": "+919999999999",
-    "password": "test123"
-  }'
+### Test User Registration
+```
+1. Click "Get Started"
+2. Fill form with any details
+3. Register & Login
 ```
 
-### 2. Test Login
-```bash
-curl -X POST http://localhost:8001/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "test@example.com",
-    "password": "test123"
-  }'
+### Test Flow
 ```
-
-### 3. Manual Testing Flow
-1. Open `http://localhost:3000`
-2. Click "Get Started" → Register new account
-3. Fill birth details form
-4. Test payment flow (with test keys)
-5. View report in dashboard
-6. Login as admin → Check admin panel
+1. Register → 2. Login → 3. Fill Birth Details → 
+4. Payment (Test Mode) → 5. View Report
+```
 
 ---
 
 ## 🐛 Common Issues & Solutions
 
-### Issue 1: MongoDB Connection Error
+### Issue 1: Firebase Error
 ```
-Error: MongoServerError: connect ECONNREFUSED
+Error: Firebase initialization failed
 ```
-**Solution**: 
-- Make sure MongoDB is running
-- Check MONGO_URL in backend/.env
-- Try: `mongosh` to verify connection
+**Solution:**
+- Check FIREBASE_PROJECT_ID in .env
+- Check FIREBASE_PRIVATE_KEY format (must include \\n)
+- Verify Firebase Console has Firestore enabled
 
 ### Issue 2: Port Already in Use
 ```
 Error: Port 8001 is already in use
 ```
-**Solution**:
+**Solution:**
 ```bash
-# Find and kill the process
-# Windows:
+# Windows
 netstat -ano | findstr :8001
 taskkill /PID <PID> /F
 
-# macOS/Linux:
+# Mac/Linux
 lsof -ti:8001 | xargs kill -9
 ```
 
-### Issue 3: Module Not Found
-```
-Error: ModuleNotFoundError: No module named 'fastapi'
-```
-**Solution**:
-```bash
-# Make sure virtual environment is activated
-# Then reinstall dependencies
-pip install -r requirements.txt
-```
-
-### Issue 4: Frontend Not Loading
-```
-Error: Cannot connect to backend
-```
-**Solution**:
-- Verify backend is running at http://localhost:8001
-- Check REACT_APP_BACKEND_URL in frontend/.env
-- Check CORS_ORIGINS in backend/.env includes frontend URL
-
-### Issue 5: Payment Not Working
+### Issue 3: Payment Not Working
 ```
 Error: Invalid Razorpay credentials
 ```
-**Solution**:
-- This is expected with placeholder keys ("XXXXX")
-- Get real test keys from Razorpay dashboard
-- Update RAZORPAY_KEY_ID and RAZORPAY_KEY_SECRET in backend/.env
-- Restart backend server
+**Solution:**
+- Expected with placeholder keys "XXXXX"
+- Get real test keys from Razorpay
+- Update backend/.env
+- Restart backend
+
+### Issue 4: Module Not Found
+```
+Error: Cannot find module 'express'
+```
+**Solution:**
+```bash
+cd backend
+npm install
+
+cd ../frontend
+npm install
+```
 
 ---
 
-## 📦 Dependencies
+## 📝 Environment Variables
 
-### Backend (Python)
-```
-fastapi==0.110.1
-uvicorn==0.25.0
-motor==3.3.1          # MongoDB async driver
-pymongo==4.5.0
-pydantic>=2.6.4
-python-jose>=3.3.0    # JWT
-passlib>=1.7.4        # Password hashing
-bcrypt==4.1.3
-razorpay              # Payment gateway
-httpx                 # HTTP client for DivineAPI
-python-dotenv>=1.0.1
+### Backend (.env)
+```env
+# Firebase (Required)
+FIREBASE_PROJECT_ID=your-project-id
+FIREBASE_PRIVATE_KEY="your-private-key-with-newlines"
+FIREBASE_CLIENT_EMAIL=your-service-account-email
+
+# Server
+PORT=8001
+CORS_ORIGINS=http://localhost:3000
+
+# Auth
+JWT_SECRET=your-secret-key
+
+# Razorpay (Optional for testing)
+RAZORPAY_KEY_ID=XXXXX
+RAZORPAY_KEY_SECRET=XXXXX
+
+# DivineAPI (Optional for testing)
+DIVINE_API_KEY=XXXXX
+
+# Admin
+ADMIN_EMAIL=admin@astromate24.com
+ADMIN_PASSWORD=admin123
 ```
 
-### Frontend (Node.js)
-```
-react: ^19.0.0
-react-router-dom: ^7.5.1
-axios: ^1.8.4
-tailwindcss: ^3.4.17
-lucide-react: ^0.507.0     # Icons
-sonner: ^2.0.3             # Toast notifications
-@radix-ui/*                # Shadcn UI components
+### Frontend (.env)
+```env
+REACT_APP_BACKEND_URL=http://localhost:8001
 ```
 
 ---
 
 ## 🚀 Deployment Guide
 
-### Deploy on Vercel (Frontend) + Railway (Backend)
+### Deploy Backend (Railway/Render)
 
-**Backend (Railway):**
+**Railway.app:**
+```
 1. Push code to GitHub
-2. Go to https://railway.app/
-3. Create new project → Deploy from GitHub
-4. Add environment variables from backend/.env
-5. Backend will be deployed with auto URL
+2. Go to railway.app
+3. New Project → Deploy from GitHub
+4. Select repository
+5. Add environment variables from backend/.env
+6. Deploy!
+```
 
-**Frontend (Vercel):**
-1. Go to https://vercel.com/
-2. Import GitHub repository
-3. Framework: Create React App
-4. Root Directory: `frontend`
-5. Add environment variable: `REACT_APP_BACKEND_URL=<railway-backend-url>`
-6. Deploy
+**Render.com:**
+```
+1. Go to render.com
+2. New → Web Service
+3. Connect GitHub repo
+4. Build Command: cd backend && npm install
+5. Start Command: cd backend && npm start
+6. Add environment variables
+7. Deploy!
+```
 
-### Deploy on AWS/DigitalOcean/VPS
+### Deploy Frontend (Vercel/Netlify)
 
-**Requirements:**
-- Ubuntu 20.04+ server
-- Nginx
-- PM2 (for Node.js)
-- Supervisor (for Python)
-
-**Steps:**
-1. Install MongoDB, Python, Node.js
-2. Clone repository
-3. Setup backend with Supervisor
-4. Setup frontend with PM2
-5. Configure Nginx reverse proxy
-6. Setup SSL with Let's Encrypt
+**Vercel:**
+```
+1. Go to vercel.com
+2. New Project → Import from GitHub
+3. Root Directory: frontend
+4. Framework: Create React App
+5. Add env: REACT_APP_BACKEND_URL=<backend-url>
+6. Deploy!
+```
 
 ---
 
-## 🔧 Customization
+## 📚 API Documentation
 
-### Change Company Details
-
-Edit `backend/config.py`:
-
-```python
-COMPANY_DETAILS = {
-    "company_url": "https://YourWebsite.com",
-    "logo_url": "https://your-logo-url.com/logo.png",
-    "footer_text": "© 2025 Your Company",
-    "company_mobile": "+91XXXXXXXXXX",
-    "company_name": "Your Company Name",
-    "company_email": "info@yourcompany.com",
-    "company_bio": "Your company description"
-}
+### Authentication APIs
+```
+POST /api/auth/register    - Create account
+POST /api/auth/login       - Login user
+GET  /api/auth/me          - Get current user (auth required)
 ```
 
-Also update in `frontend/src/config.js`
+### Payment APIs
+```
+POST /api/payments/create-order  - Create Razorpay order
+POST /api/payments/verify        - Verify payment
+```
+
+### Report APIs
+```
+GET /api/reports/my-reports      - Get user reports
+GET /api/reports/:reportId       - Get specific report
+```
+
+### Admin APIs
+```
+GET /api/admin/users    - List all users
+GET /api/admin/orders   - List all orders
+GET /api/admin/reports  - List all reports
+```
+
+---
+
+## 🎯 Customization
+
+### Change Company Details
+Edit `backend/config.js`:
+```javascript
+export const COMPANY_DETAILS = {
+  company_name: 'Your Company',
+  company_email: 'info@yourcompany.com',
+  // ... other details
+};
+```
 
 ### Change Report Price
-
-Edit `frontend/src/pages/BirthDetails.js`:
+Edit `frontend/src/pages/BirthDetails.jsx`:
 ```javascript
-// Line with amount
 amount: 499,  // Change to your price
 ```
 
-### Change Admin Credentials
-
-Edit `backend/.env`:
-```
-ADMIN_EMAIL="youradmin@email.com"
-ADMIN_PASSWORD="your_secure_password"
-```
-
----
-
-## 📊 Database Schema
-
-### Users Collection
-```javascript
-{
-  id: String,
-  name: String,
-  email: String,
-  mobile: String,
-  password: String (hashed),
-  is_admin: Boolean,
-  created_at: DateTime
-}
-```
-
-### Orders Collection
-```javascript
-{
-  id: String,
-  user_id: String,
-  razorpay_order_id: String,
-  razorpay_payment_id: String,
-  razorpay_signature: String,
-  amount: Number,
-  status: String, // "created", "paid", "failed"
-  birth_data: Object,
-  created_at: DateTime
-}
-```
-
-### Reports Collection
-```javascript
-{
-  id: String,
-  user_id: String,
-  order_id: String,
-  birth_data: Object,
-  api_response: Object,
-  status: String, // "pending", "processing", "completed", "failed"
-  created_at: DateTime
-}
+### Change Theme Colors
+Edit `frontend/src/index.css`:
+```css
+--primary: 41 42% 49%;     /* Your primary color */
+--secondary: 239 43% 27%;  /* Your secondary color */
 ```
 
 ---
 
-## 📖 User Flow
+## 💡 Quick Commands
 
-```
-1. User visits homepage
-   ↓
-2. Clicks "Get Started" → Registers
-   ↓
-3. Fills birth details form
-   ↓
-4. Clicks "Proceed to Payment"
-   ↓
-5. Razorpay modal opens → Makes payment
-   ↓
-6. Payment verified
-   ↓
-7. Report generated via DivineAPI
-   ↓
-8. User redirected to Report View
-   ↓
-9. Report saved in Dashboard
+```bash
+# Setup everything
+npm run setup
+
+# Start both servers
+npm run dev
+
+# Start backend only
+npm run dev:backend
+
+# Start frontend only
+npm run dev:frontend
+
+# Backend
+cd backend && npm run dev
+
+# Frontend
+cd frontend && npm start
 ```
 
 ---
 
-## 🤝 Support
+## 🔒 Security Checklist
 
-**Contact:**
-- Email: info@AstroMate24.com
-- Phone: +919588369001
-- Website: https://AstroMate24.com
+- [ ] Change JWT_SECRET in production
+- [ ] Change Admin password
+- [ ] Use environment variables (never commit .env)
+- [ ] Enable Firebase security rules
+- [ ] Use HTTPS in production
+- [ ] Add rate limiting
+- [ ] Sanitize user inputs
 
-**Technical Issues:**
-- Check logs in backend terminal
-- Check browser console for frontend errors
-- Verify all environment variables are set correctly
+---
+
+## 📖 Learning Resources
+
+- **Firebase:** https://firebase.google.com/docs
+- **Express.js:** https://expressjs.com/
+- **React:** https://react.dev/
+- **Razorpay:** https://razorpay.com/docs/
+
+---
+
+## 🆘 Need Help?
+
+**Check logs:**
+```bash
+# Backend errors: Terminal where backend is running
+# Frontend errors: Browser Console (F12)
+```
+
+**Test backend:**
+```bash
+curl http://localhost:8001/api/
+```
+
+**Reset Firestore data:**
+Go to Firebase Console → Firestore → Delete collections manually
 
 ---
 
@@ -614,47 +552,31 @@ Proprietary - AstroMate24
 
 ---
 
-## ⚠️ Important Notes
-
-1. **Placeholder Credentials**: Current setup uses "XXXXX" for Razorpay and DivineAPI. Replace with real keys for production.
-
-2. **Security**: 
-   - Change JWT_SECRET in production
-   - Use HTTPS in production
-   - Change admin password
-   - Enable rate limiting
-
-3. **Testing**: Always test with Razorpay test keys before going live
-
-4. **Backup**: Regular MongoDB backups recommended
-
----
-
-**Last Updated**: January 2025
-**Version**: 1.0.0
-
----
-
-## 🎉 Quick Start (TL;DR)
+## 🎉 Quick Start Summary
 
 ```bash
-# 1. Start MongoDB
-mongod
+# 1. Setup (One-time)
+npm run setup
 
-# 2. Backend (Terminal 1)
-cd backend
-pip install -r requirements.txt
-uvicorn server:app --host 0.0.0.0 --port 8001 --reload
+# 2. Configure Firebase
+# Edit backend/.env with Firebase credentials
 
-# 3. Frontend (Terminal 2)
-cd frontend
-npm install
-npm start
+# 3. Start
+npm run dev
 
-# 4. Open browser: http://localhost:3000
-# 5. Test login: admin@astromate24.com / admin123
+# 4. Open
+http://localhost:3000
+
+# 5. Test Login
+admin@astromate24.com / admin123
 ```
 
 ---
 
-Made with ❤️ by AstroMate24 Team
+**🌟 Setup Time:** 5-10 minutes  
+**💪 Difficulty:** Easy  
+**📱 Status:** Production Ready
+
+---
+
+Made with ❤️ for AstroMate24 | Version 2.0.0 | Firebase Edition
