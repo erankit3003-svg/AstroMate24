@@ -149,19 +149,19 @@ const AdminPanel = () => {
                     {reports.map((report) => (
                       <tr key={report.id} className="border-b border-primary/5 hover:bg-primary/5">
                         <td className="px-6 py-4 text-sm text-secondary font-mono">{report.id.substring(0, 8)}</td>
-                        <td className="px-6 py-4 text-sm text-secondary">{report.birth_data.full_name}</td>
-                        <td className="px-6 py-4 text-sm text-secondary">{report.birth_data.place}</td>
+                        <td className="px-6 py-4 text-sm text-secondary">{report?.birth_data?.full_name}</td>
+                        <td className="px-6 py-4 text-sm text-secondary">{report?.birth_data?.place}</td>
                         <td className="px-6 py-4 text-sm">
                           <span className={`px-2 py-1 rounded text-xs ${
                             report.status === 'completed' ? 'bg-green-100 text-green-700' :
                             report.status === 'processing' ? 'bg-yellow-100 text-yellow-700' :
                             'bg-red-100 text-red-700'
                           }`}>
-                            {report.status}
+                            {report?.status}
                           </span>
                         </td>
                         <td className="px-6 py-4 text-sm text-secondary/70">
-                          {new Date(report.created_at).toLocaleDateString()}
+                          {new Date(report?.created_at).toLocaleDateString()}
                         </td>
                       </tr>
                     ))}

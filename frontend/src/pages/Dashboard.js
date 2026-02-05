@@ -80,36 +80,38 @@ const Dashboard = () => {
               </Button>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {reports.map((report) => (
-                <div
-                  key={report.id}
-                  className="bg-white border border-primary/10 rounded-2xl p-6 hover:border-primary/30 transition-all cursor-pointer"
-                  onClick={() => navigate(`/report/${report.id}`)}
-                  data-testid={`report-card-${report.id}`}
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                      <FileText className="w-6 h-6 text-primary" />
-                    </div>
-                    <span className={`text-xs px-3 py-1 rounded-full ${
-                      report.status === 'completed' ? 'bg-green-100 text-green-700' :
-                      report.status === 'processing' ? 'bg-yellow-100 text-yellow-700' :
-                      'bg-red-100 text-red-700'
-                    }`}>
-                      {report.status}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-semibold text-secondary mb-2">
-                    {report.birth_data.full_name}
-                  </h3>
-                  <div className="flex items-center gap-2 text-sm text-secondary/70">
-                    <Calendar className="w-4 h-4" />
-                    {formatDate(report.created_at)}
-                  </div>
-                </div>
-              ))}
-            </div>
+            {reports.map((report) => (
+  <div
+    key={report.id}
+    className="bg-white hover:-translate-y-0.5 border border-transparent rounded-2xl shadow-sm hover:shadow-md hover:border-primary/20 p-7 transition-all duration-300 cursor-pointer"
+    onClick={() => navigate(`/report/${report.id}`)}
+  >
+    <div className="flex items-start justify-between mb-4">
+      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+        <FileText className="w-6 h-6 text-primary" />
+      </div>
+      <span className={`text-xs px-3 py-1 rounded-full ${
+        report.status === 'completed'
+          ? 'bg-green-100 text-green-700'
+          : report.status === 'processing'
+          ? 'bg-yellow-100 text-yellow-700'
+          : 'bg-red-100 text-red-700'
+      }`}>
+        {report.status}
+      </span>
+    </div>
+
+    <h3 className="text-lg font-semibold text-secondary mb-2">
+      {report?.birthData?.full_name || 'Unknown User'}
+    </h3>
+
+    <div className="flex items-center gap-2 text-sm text-secondary/70">
+      <Calendar className="w-4 h-4" />
+      {formatDate(report.createdAt)}
+    </div>
+  </div>
+))}
+
           </div>
         )}
       </div>

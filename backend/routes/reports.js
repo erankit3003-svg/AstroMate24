@@ -9,7 +9,6 @@ router.get('/my-reports', authenticate, async (req, res) => {
   try {
     const reportsSnapshot = await db.collection('reports')
       .where('userId', '==', req.user.id)
-      .orderBy('createdAt', 'desc')
       .get();
     
     const reports = [];
@@ -44,8 +43,18 @@ router.get('/:reportId', authenticate, async (req, res) => {
     }
     
     res.json({
-      id: reportDoc.id,
-      ...reportData
+     /*  id: reportDoc.id,
+      ...reportData */
+
+success: true,
+  id: reportDoc.id,
+  status: reportData.status,
+  report_url: reportData?.apiResponse?.data?.report_url || null,
+  download_url: reportData?.apiResponse?.data?.download_url || null,
+  ...reportData
+
+
+
     });
   } catch (error) {
     console.error('Get report error:', error);

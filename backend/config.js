@@ -4,7 +4,7 @@ dotenv.config();
 export const config = {
   port: process.env.PORT || 8001,
   corsOrigins: process.env.CORS_ORIGINS || 'http://localhost:3000',
-  jwtSecret: process.env.JWT_SECRET || 'your-secret-key',
+  jwtSecret: process.env.JWT_SECRET || 'supersecret123',
   jwtExpiration: '7d',
   
   firebase: {
@@ -14,13 +14,13 @@ export const config = {
   },
   
   razorpay: {
-    keyId: process.env.RAZORPAY_KEY_ID || 'XXXXX',
-    keySecret: process.env.RAZORPAY_KEY_SECRET || 'XXXXX'
+    keyId: process.env.RAZORPAY_KEY_ID,
+    keySecret: process.env.RAZORPAY_KEY_SECRET
   },
   
   divineApi: {
-    key: process.env.DIVINE_API_KEY || 'XXXXX',
-    url: 'https://reports.divineapi.com/reports'
+    key: process.env.DIVINE_API_KEY,
+    url: 'https://pdf.divineapi.com/indian-api/v2/vedic-yearly-prediction-15-year'
   },
   
   admin: {
