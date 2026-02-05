@@ -1,46 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { API } from '../config';
-import { getToken, isAuthenticated } from '../utils/auth';
-import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
-import { Label } from '../components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
-import { toast } from 'sonner';
-import { Loader2, Calendar, MapPin } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { API } from "../config";
+import { getToken, isAuthenticated } from "../utils/auth";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../components/ui/select";
+import { toast } from "sonner";
+import { Loader2, Calendar, MapPin } from "lucide-react";
+import BirthPlaceInput from "../components/BirthPlaceInput";
 
 const BirthDetails = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    full_name: '',
-    email: '',
-    mobile: '',
-    place: '',
-    lat: '',
-    lon: '',
-    day: '',
-    month: '',
-    year: '',
-    hour: '',
-    min: '',
-    sec: '0',
-    tzone: '5.5',
-    gender: 'male'
+    full_name: "",
+    email: "",
+    mobile: "",
+    place: "",
+    lat: "",
+    lon: "",
+    day: "",
+    month: "",
+    year: "",
+    hour: "",
+    min: "",
+    sec: "0",
+    tzone: "",
+    gender: "male",
   });
 
   useEffect(() => {
     if (!isAuthenticated()) {
-      toast.error('Please login to continue');
-      navigate('/login');
+      toast.error("Please login to continue");
+      navigate("/login");
     }
   }, [navigate]);
 
   const loadRazorpayScript = () => {
     return new Promise((resolve) => {
-      const script = document.createElement('script');
-      script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
       script.onload = () => resolve(true);
       script.onerror = () => resolve(false);
       document.body.appendChild(script);
@@ -50,16 +57,16 @@ const BirthDetails = () => {
   const handlePayment = async (orderData) => {
     const res = await loadRazorpayScript();
     if (!res) {
-      toast.error('Failed to load payment gateway');
+      toast.error("Failed to load payment gateway");
       return;
     }
 
     const options = {
       key: orderData.key,
       amount: orderData.amount * 100,
-      currency: 'INR',
-      name: 'AstroMate24',
-      description: 'Astrology Report',
+      currency: "INR",
+      name: "AstroMate24",
+      description: "Astrology Report",
       order_id: orderData.razorpay_order_id,
       handler: async function (response) {
         try {
@@ -69,31 +76,31 @@ const BirthDetails = () => {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,
-              order_id: orderData.order_id
+              order_id: orderData.order_id,
             },
             {
               headers: {
-                Authorization: `Bearer ${getToken()}`
-              }
-            }
+                Authorization: `Bearer ${getToken()}`,
+              },
+            },
           );
 
-          toast.success('Payment successful! Generating your report...');
+          toast.success("Payment successful! Generating your report...");
           setTimeout(() => {
             navigate(`/report/${verifyResponse.data.report_id}`);
           }, 2000);
         } catch (error) {
-          toast.error('Payment verification failed');
+          toast.error("Payment verification failed");
         }
       },
       prefill: {
         name: formData.full_name,
         email: formData.email,
-        contact: formData.mobile
+        contact: formData.mobile,
       },
       theme: {
-        color: '#B49248'
-      }
+        color: "#B49248",
+      },
     };
 
     const paymentObject = new window.Razorpay(options);
@@ -119,39 +126,49 @@ const BirthDetails = () => {
         min: parseInt(formData.min),
         sec: parseInt(formData.sec),
         tzone: parseFloat(formData.tzone),
-        gender: formData.gender
+        gender: formData.gender,
       };
 
       const response = await axios.post(
         `${API}/payments/create-order`,
         {
           amount: 499,
-          birth_data: birthData
+          birth_data: birthData,
         },
         {
           headers: {
-            Authorization: `Bearer ${getToken()}`
-          }
-        }
+            Authorization: `Bearer ${getToken()}`,
+          },
+        },
       );
 
       await handlePayment(response.data);
     } catch (error) {
-      toast.error(error.response?.data?.detail || 'Failed to create order');
+      toast.error(error.response?.data?.detail || "Failed to create order");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen py-20 px-6" style={{ background: 'linear-gradient(135deg, #FDFBF7 0%, #F3E8FF 50%, #E0F2FE 100%)' }}>
+    <div
+      className="min-h-screen py-20 px-6"
+      style={{
+        background:
+          "linear-gradient(135deg, #FDFBF7 0%, #F3E8FF 50%, #E0F2FE 100%)",
+      }}
+    >
       <div className="container mx-auto max-w-2xl">
         <div className="backdrop-blur-xl bg-white/60 border border-white/40 shadow-lg rounded-2xl p-8">
-          <h1 className="text-3xl font-bold text-secondary mb-2" data-testid="birth-details-heading">
+          <h1
+            className="text-3xl font-bold text-secondary mb-2"
+            data-testid="birth-details-heading"
+          >
             Birth Details
           </h1>
           <p className="text-secondary/70 mb-8">
-            Enter your accurate birth details for a personalized astrology report
+            Enter your accurate birth details for a personalized astrology
+            report
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -161,7 +178,9 @@ const BirthDetails = () => {
                 <Input
                   id="full_name"
                   value={formData.full_name}
-                  onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, full_name: e.target.value })
+                  }
                   className="mt-2 bg-white/50"
                   required
                   data-testid="full-name-input"
@@ -170,8 +189,16 @@ const BirthDetails = () => {
 
               <div>
                 <Label htmlFor="gender">Gender</Label>
-                <Select value={formData.gender} onValueChange={(value) => setFormData({ ...formData, gender: value })}>
-                  <SelectTrigger className="mt-2 bg-white/50" data-testid="gender-select">
+                <Select
+                  value={formData.gender}
+                  onValueChange={(value) =>
+                    setFormData({ ...formData, gender: value })
+                  }
+                >
+                  <SelectTrigger
+                    className="mt-2 bg-white/50"
+                    data-testid="gender-select"
+                  >
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -189,7 +216,9 @@ const BirthDetails = () => {
                   id="email"
                   type="email"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   className="mt-2 bg-white/50"
                   required
                   data-testid="birth-email-input"
@@ -201,20 +230,22 @@ const BirthDetails = () => {
                 <Input
                   id="mobile"
                   value={formData.mobile}
-                  onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, mobile: e.target.value })
+                  }
                   className="mt-2 bg-white/50"
                   required
                   data-testid="mobile-input"
                 />
               </div>
             </div>
-
+            <BirthPlaceInput formData={formData} setFormData={setFormData} />
             <div>
-              <Label htmlFor="place" className="flex items-center gap-2">
+              {/* <Label htmlFor="place" className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
                 Birth Place
-              </Label>
-              <Input
+              </Label> */}
+              {/*   <Input
                 id="place"
                 value={formData.place}
                 onChange={(e) => setFormData({ ...formData, place: e.target.value })}
@@ -222,7 +253,7 @@ const BirthDetails = () => {
                 placeholder="City, Country"
                 required
                 data-testid="place-input"
-              />
+              />*/}
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -233,10 +264,18 @@ const BirthDetails = () => {
                   type="number"
                   step="any"
                   value={formData.lat}
-                  onChange={(e) => setFormData({ ...formData, lat: e.target.value })}
-                  className="mt-2 bg-white/50"
-                  placeholder="28.6139"
-                  required
+                 placeholder="30.378180"
+                 disabled
+                  onChange={(e) =>
+                  setFormData({ ...formData, lat: e.target.value })
+                }
+                tabIndex={-1} // ⛔ keyboard focus
+                aria-disabled="true"
+                className="mt-2 bg-gray-100 cursor-not-allowed select-none"
+                onKeyDown={(e) => e.preventDefault()}
+                //onChange={() => {}}
+                onPaste={(e) => e.preventDefault()}
+                onFocus={(e) => e.target.blur()}
                   data-testid="lat-input"
                 />
               </div>
@@ -248,11 +287,21 @@ const BirthDetails = () => {
                   type="number"
                   step="any"
                   value={formData.lon}
-                  onChange={(e) => setFormData({ ...formData, lon: e.target.value })}
-                  className="mt-2 bg-white/50"
-                  placeholder="77.2090"
-                  required
-                  data-testid="lon-input"
+                   disabled
+                onChange={(e) =>
+                  setFormData({ ...formData, lon: e.target.value })
+                }
+                placeholder="76.776695"
+                required
+                
+                tabIndex={-1} // ⛔ keyboard focus
+                aria-disabled="true"
+                className="mt-2 bg-gray-100 cursor-not-allowed select-none"
+                onKeyDown={(e) => e.preventDefault()}
+                //onChange={() => {}}
+                onPaste={(e) => e.preventDefault()}
+                onFocus={(e) => e.target.blur()}
+                data-testid="lon-input"
                 />
               </div>
             </div>
@@ -269,7 +318,9 @@ const BirthDetails = () => {
                   min="1"
                   max="31"
                   value={formData.day}
-                  onChange={(e) => setFormData({ ...formData, day: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, day: e.target.value })
+                  }
                   className="bg-white/50"
                   required
                   data-testid="day-input"
@@ -280,7 +331,9 @@ const BirthDetails = () => {
                   min="1"
                   max="12"
                   value={formData.month}
-                  onChange={(e) => setFormData({ ...formData, month: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, month: e.target.value })
+                  }
                   className="bg-white/50"
                   required
                   data-testid="month-input"
@@ -291,7 +344,9 @@ const BirthDetails = () => {
                   min="1900"
                   max="2025"
                   value={formData.year}
-                  onChange={(e) => setFormData({ ...formData, year: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, year: e.target.value })
+                  }
                   className="bg-white/50"
                   required
                   data-testid="year-input"
@@ -308,7 +363,9 @@ const BirthDetails = () => {
                   min="0"
                   max="23"
                   value={formData.hour}
-                  onChange={(e) => setFormData({ ...formData, hour: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, hour: e.target.value })
+                  }
                   className="bg-white/50"
                   required
                   data-testid="hour-input"
@@ -319,7 +376,9 @@ const BirthDetails = () => {
                   min="0"
                   max="59"
                   value={formData.min}
-                  onChange={(e) => setFormData({ ...formData, min: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, min: e.target.value })
+                  }
                   className="bg-white/50"
                   required
                   data-testid="min-input"
@@ -330,7 +389,9 @@ const BirthDetails = () => {
                   min="0"
                   max="59"
                   value={formData.sec}
-                  onChange={(e) => setFormData({ ...formData, sec: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, sec: e.target.value })
+                  }
                   className="bg-white/50"
                   data-testid="sec-input"
                 />
@@ -344,19 +405,33 @@ const BirthDetails = () => {
                 type="number"
                 step="0.5"
                 value={formData.tzone}
-                onChange={(e) => setFormData({ ...formData, tzone: e.target.value })}
-                className="mt-2 bg-white/50"
+                disabled
+                onChange={(e) =>
+                  setFormData({ ...formData, tzone: e.target.value })
+                }
                 placeholder="5.5 for IST"
                 required
                 data-testid="tzone-input"
+                tabIndex={-1} // ⛔ keyboard focus
+                aria-disabled="true"
+                className="mt-2 bg-gray-100 cursor-not-allowed select-none"
+                onKeyDown={(e) => e.preventDefault()}
+                //onChange={() => {}}
+                onPaste={(e) => e.preventDefault()}
+                onFocus={(e) => e.target.blur()}
+            
               />
             </div>
 
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
               <div className="flex justify-between items-center">
                 <div>
-                  <p className="font-semibold text-secondary">Astrology Report</p>
-                  <p className="text-sm text-secondary/70">Complete birth chart analysis</p>
+                  <p className="font-semibold text-secondary">
+                    Astrology Report
+                  </p>
+                  <p className="text-sm text-secondary/70">
+                    Complete birth chart analysis
+                  </p>
                 </div>
                 <div className="text-right">
                   <p className="text-2xl font-bold text-primary">₹499</p>
@@ -371,7 +446,7 @@ const BirthDetails = () => {
               data-testid="proceed-payment-button"
             >
               {loading && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-              {loading ? 'Processing...' : 'Proceed to Payment'}
+              {loading ? "Processing..." : "Proceed to Payment"}
             </Button>
           </form>
         </div>

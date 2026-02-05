@@ -21,7 +21,7 @@ const Header = () => {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3" data-testid="header-logo">
             <img 
-              src={COMPANY_DETAILS.logo_url} 
+            //  src={COMPANY_DETAILS.logo_url} 
               alt={COMPANY_DETAILS.company_name} 
               className="h-10 w-auto"
             />

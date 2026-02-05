@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { 
@@ -7,10 +7,18 @@ import {
   Moon, Sun, Activity, Target, Award, Eye
 } from 'lucide-react';
 import { COMPANY_DETAILS } from '../config';
+import { isAuthenticated, getUser } from '../utils/auth';
+
+
 
 const Home = () => {
   const navigate = useNavigate();
-
+  const [user, setUser] = useState(null);
+ useEffect(() => {
+    if (isAuthenticated()) {
+      setUser(getUser());
+    }
+  }, []);
   const reportFeatures = [
     {
       icon: BookOpen,
