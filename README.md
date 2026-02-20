@@ -81,7 +81,7 @@ Complete astrology website jo personalized Vedic astrology reports generate kart
 ### 🎯 User Features
 - ✅ User Registration & Login (JWT Auth)
 - ✅ Birth Details Form (Complete Astrological Inputs)
-- ✅ Razorpay Payment Integration (₹499 per report)
+- ✅ Razorpay Payment Integration (₹799 per report)
 - ✅ Instant Report Generation via DivineAPI
 - ✅ User Dashboard (All Reports)
 - ✅ Detailed Report View (17 Sections)
@@ -554,7 +554,7 @@ export const COMPANY_DETAILS = {
 ### Change Report Price
 Edit `frontend/src/pages/BirthDetails.jsx`:
 ```javascript
-amount: 499,  // Change to your price
+amount: 799,  // Change to your price
 ```
 
 ### Change Theme Colors

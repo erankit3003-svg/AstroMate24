@@ -111,53 +111,38 @@ const ReportView = () => {
     Report Details
   </h2>
 
-  {report.status === 'completed' ? (
-    <div className="bg-background/50 rounded-lg p-6 space-y-4">
+ {report.status === "completed" ? (
 
-      {report.report_url ? (
-        <div className="w-full h-[80vh] mt-4">
-          {loadingIframe && <Loader2 className="w-8 h-8 animate-spin mx-auto" />}
-  {
-  <iframe
-  src={report.report_url}
-  style={{ width: '100%', height: '80vh', border: 'none', display: loadingIframe ? 'none' : 'block' }}
-  onLoad={() => setLoadingIframe(false)}
-/>
-  /*   <iframe
-      src={report.report_url}
-      style={{ width: '100%', height: '100%', border: 'none' }}
-      title="Astrology Report"
-    /> */}
-  </div> 
-       /*  <a
-  href={report.report_url}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition"
->
-  📄 Open Astrology Report
-</a> */
-      ) : (
-        <p className="text-red-600">
-          Report generation failed. Please contact support.
-        </p>
-      )}
+  <div className="bg-background/50 rounded-lg p-6 text-center">
+    <a
+      href={report.report_url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:opacity-90 transition"
+    >
+      📄 Open Astrology Report
+    </a>
+  </div>
 
-    </div>
-  ) : report.status === 'processing' ? (
-    <div className="text-center py-12">
-      <Loader2 className="w-8 h-8 animate-spin text-primary mx-auto mb-4" />
-      <p className="text-secondary/70">
-        Your report is being generated...
-      </p>
-    </div>
-  ) : (
-    <div className="text-center py-12">
-      <p className="text-red-600">
-        Report generation failed. Please contact support.
-      </p>
-    </div>
-  )}
+) : report.status === "processing" ? (
+
+  <div className="text-center py-12">
+    <Loader2 className="w-8 h-8 animate-spin text-primary mx-auto mb-4" />
+    <p className="text-secondary/70">
+      Your report is being generated...
+    </p>
+  </div>
+
+) : (
+
+  <div className="text-center py-12">
+    <p className="text-red-600">
+      Report generation failed. Please contact support.
+    </p>
+  </div>
+
+)}
+
 </div>
 
 
