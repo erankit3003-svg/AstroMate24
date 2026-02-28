@@ -4,8 +4,8 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "craco.config.js",
   "scripts": {
-    "start": "react-scripts start"
-    //"start": "craco start",
+    "start": "react-scripts start",
+   
     "build": "craco build",
     "test": "craco test"
   },
